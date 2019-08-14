@@ -9,9 +9,36 @@ class Fp_Followprice_Model_Observer
 
 	public function createList (Varien_Event_Observer $observer)
 	{
+		$block = $observer->getBlock();
+		$class = get_class($block);
+			Mage::log($class);
+		// Conversion check
+		if (($block instanceof Mage_Checkout_Block_Onepage_Success) && !($block instanceof Mage_Downloadable_Block_Checkout_Success)){
+			$transport = $observer->getTransport();
+			$html = $transport->getHtml();
+			$order_id = $block->getOrderId();
+			$order = Mage::getModel('sales/order')->loadByIncrementId($order_id);
+			
+			$html .= '<script name="fp-conversions"
+				data-total="' . $order->base_subtotal . '"
+				data-order-id="' . $order_id . '"
+				data-user-id="' . $order->customer_id . '"
+				';
+			$items = $order->getAllVisibleItems();
+			$counter = 0;
+			foreach ($items as $item) {
+				$html .= ' data-products-' . $counter . '-id=' . floatval($item->item_id) . '
+				data-products-' . $counter . '-price=' . floatval($item->base_price_incl_tax);
+				$counter ++;
+			}
+			$html .= ' src="https://followprice.co/fp-conversions.js" async></script>';
+			Mage::log($items);
+			$transport->setHtml($html);
+		}
+
+		// List Button
 		if((!Mage::registry('current_product')) && Mage::getStoreConfig('Fp_Followprice_Config/section_three/Fp_Followprice_Enablelist') && (Mage::getStoreConfig('Fp_Followprice_Config/section_one/Fp_Followprice_Enable'))) {
-			$block = $observer->getBlock();
-			if (($block instanceof Mage_Catalog_Block_Product_Price) && ($block instanceof Mage_Catalog_Block_Product_Abstract)) {
+			if (($block instanceof Mage_Catalog_Block_Product_Price) && ($block instanceof Mage_Catalog_Block_Product_Abstract) && ($page !== "product")) {
 				$transport = $observer->getTransport();
 				$html = $transport->getHtml();
 
@@ -26,6 +53,9 @@ class Fp_Followprice_Model_Observer
 				//Get category
 				$categoryIds = $_product->getCategoryIds();
 				$_category = Mage::getModel('catalog/category')->load($categoryIds[0]);
+				$_categoryparent = Mage::getModel('catalog/category')
+        			->load($categoryIds[0])
+        			->getParentCategory();
 
 				//Get button style
 				$style = explode(',', Mage::getStoreConfig('Fp_Followprice_Config/section_three/Fp_Followprice_Style'));
@@ -55,13 +85,15 @@ class Fp_Followprice_Model_Observer
 				if ($stylearray[3] == 1) {
 					$button_style .= "stacked-text,";
 				}
+				$fp_category = $_categoryparent->getName();
+				$fp_subcategory = $_category->getName();
 
 				$html .= '
 				<div class="followprice-container">
 					<div class="fp-button"
 						data-store-key="' . Mage::getStoreConfig('Fp_Followprice_Config/section_one/Fp_Followprice_Key') . '"
 						data-style="' . $button_style . '"
-						data-product-title="' . $name . '"
+						data-product-title="' . htmlspecialchars($name) . '"
 						data-product-id="' . $id . '"
 						data-product-url="' . $url . '"
 						data-product-image="' . $image . '"
@@ -73,15 +105,19 @@ class Fp_Followprice_Model_Observer
 						data-product-availability ="' . $_product->stock_item->is_in_stock . '"
 						data-product-stock="' . $_product->stock_item->stock_qty . '"
 						data-product-manufacture="' . $_product->getAttributeText('manufacturer') . '"
-						data-product-category="' . $_category->getName() . '">
+						data-product-category="' . htmlspecialchars($fp_category) . '"
+						data-product-subcategory="' . htmlspecialchars($fp_subcategory) . '">
 					</div>
 				<div>';
 				$transport->setHtml($html);
 			}
-			if ($block instanceof Mage_Catalog_Block_Product_List) {
+			if (($block instanceof Mage_Catalog_Block_Product_List) && ($page !== "product")) {
+				//Get store language code
+				$locale = Mage::app()->getLocale()->getLocaleCode();
+				
 				$transport = $observer->getTransport();
 				$html = $transport->getHtml();
-				$html .= '<script>(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://followprice.co/followbutton.js"; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();</script>
+				$html .= '<script>(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://followprice.co/followbutton.js?locale="+' . json_encode($locale) . '; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();</script>
 					<style>
 						.followprice-container{
 							width:100%;

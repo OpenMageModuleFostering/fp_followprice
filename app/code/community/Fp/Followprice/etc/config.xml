@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fp_Followprice>
-            <version>1.0.0.0</version>
+            <version>1.0.3.0</version>
         </Fp_Followprice>
     </modules>
     <default>
@@ -21,7 +21,7 @@
                 <Fp_Followprice_Custom_Css></Fp_Followprice_Custom_Css>
             </section_two>
             <section_three>
-                <Fp_Followprice_Enablelist>1</Fp_Followprice_Enablelist>
+                <Fp_Followprice_Enablelist>0</Fp_Followprice_Enablelist>
                 <Fp_Followprice_Style></Fp_Followprice_Style>
                 <Fp_Followprice_Allignmentlist></Fp_Followprice_Allignmentlist>
                 <Fp_Followprice_Margin_Toplist>0</Fp_Followprice_Margin_Toplist>
@@ -70,6 +70,13 @@
                 </children>
             </report>
         </menu>
+        <layout>
+            <updates>
+                <followprice>
+                    <file>followprice.xml</file>
+                </followprice>
+            </updates>
+        </layout>
     </adminhtml>
     <admin>
         <routers>

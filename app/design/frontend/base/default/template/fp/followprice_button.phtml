@@ -11,28 +11,38 @@
 	/*Get the current product image URL*/
 	$cMedia = $this->getMedia();
 
+	/*Get Language code*/
+	$locale = Mage::app()->getLocale()->getLocaleCode();
+
 	/*Get category*/
 	$categoryIds = $_product->getCategoryIds();
 	$firstCategoryId = $categoryIds[0];
 	$_category = Mage::getModel('catalog/category')->load($firstCategoryId);
-
+	$_categoryparent = Mage::getModel('catalog/category')
+        			->load($firstCategoryId)
+        			->getParentCategory();
+    $fp_category = $_categoryparent->getName();
+    $fp_subcategory = $_category->getName();
 
 	/*Get stock info*/
 	$stock = $_product->stock_item;
+	$availability = $stock->is_in_stock;
 
 	/*Get position*/
 	$_position = $this->getPosition(); 
 
 ?>
-<?php // To determine if the button comes after "price" or "add to cart" ?>
-<?php if (($_position == 0 && $this->message == "price") || ($_position == 1 && $this->message == "cart")) { ?>
+<?php // To determine if the button comes after "price" or "add to cart. Checks if product is available. If not, add to cart button disapears, so must be displayed under price" ?>
+<?php if ( (($availability!==0) && ((($_position == 0) && ($this->message == "price")) || (($_position == 1) && ($this->message == "cart")))) || (($availability==0) && ($this->message == "price")) ) { ?>
 
-<script>(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://followprice.co/followbutton.js"; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();</script>
+<script type="text/javascript">
+	(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://followprice.co/followbutton.js?locale="+<?php echo json_encode($locale); ?>; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();
+</script>
 
 <div class='followprice-container'>
 	<div class="fp-button"
 	data-store-key="<?php echo $_key; ?>"
-	data-product-title="<?php echo $_product->name; ?>"
+	data-product-title="<?php echo htmlspecialchars($_product->name); ?>"
 	data-product-id="<?php echo $_product->entity_id; ?>"
 	data-product-url="<?php echo $cUrl; ?>"
 	data-product-image="<?php echo $cMedia; ?>"
@@ -41,10 +51,11 @@
 	data-product-currency="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?>"
 	data-product-campaign-start="<?php echo $_product->special_from_date; ?>"
 	data-product-campaign-end="<?php echo $_product->special_to_date; ?>"
-	data-product-availability ="<?php echo $stock->is_in_stock; ?>"
+	data-product-availability ="<?php echo $availability ?>"
 	data-product-stock="<?php echo $stock->stock_qty; ?>"
 	data-product-manufacture="<?php  echo $_product->getAttributeText('manufacturer'); ?>"
-	data-product-category="<?php echo $_category->getName(); ?>">
+	data-product-category="<?php echo htmlspecialchars($fp_category); ?>"
+	data-product-subcategory="<?php echo htmlspecialchars($fp_subcategory); ?>">
 </div>
 </div>
 <style>

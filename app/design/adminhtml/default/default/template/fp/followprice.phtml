@@ -1,0 +1,113 @@
+<?php $store_key = Mage::getStoreConfig('Fp_Followprice_Config/section_one/Fp_Followprice_Key'); ?>
+<?php $configuration_url = Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/Fp_Followprice_Config"); ?>
+<script>
+var storeKey = '<?php echo $store_key; ?>';
+var siteUrl = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>';
+var configurationUrl = '<?php echo $configuration_url; ?>';
+</script>
+<div class="fp-title-div">
+</div>
+
+<div class="wrap fp-wrap fp-dashboard-wrap">
+
+    <div class="fp-block fp-block-white fp-block-dashboard" style="<?php if (empty($store_key)) echo 'display:none'; ?>">
+
+        <div class="fp-block-left">
+            <div class="fp-block-container">
+
+                <p class="fp-block-text">Click to access your followprice dashboard in a new tab.</p>
+
+                <a target="_blank" href="https://followprice.co/business/login" class="fp-button fp-button-primary fp-button-large" type="submit" >Go to my Dashboard<span class="icon-external-link"></span></a> 
+            </div>
+        </div><div class="fp-block-right fp-block-right-back-dashboard"></div>
+
+
+
+    </div>
+
+    <div class="fp-block fp-block-white fp-block-congifuration" style="<?php if (empty($store_key)) echo 'display:none'; ?>">
+
+        <div class="fp-block-left">
+            <div class="fp-block-container">
+
+                <p class="fp-block-text">Click to go to your Followprice extension configuration page.</p>
+
+                <a target="_blank" href="<?php echo $configuration_url; ?>" class="fp-button fp-button-primary fp-button-large" type="submit" >Go to Configuration<span class="icon-external-link"></span></a> 
+            </div>
+        </div><div class="fp-block-right fp-block-right-back-gear"></div>
+
+
+
+    </div>
+
+    <div style="<?php if (!empty($store_key)) echo 'display:none'; ?>">
+    <div class="fp-block">
+        <h3 class="fp-block-title">To complete the installation please execute the following steps.</h3>
+    </div>
+    <div class="fp-block fp-block-white">
+        <div class="fp-block-container fp-block-container-title">
+            <h3 class="fp-block-title">1. Get your store key</h3>
+        </div>
+        <div class="fp-block-container">
+            <p class="fp-block-text">To get a valid store key create a Followprice account with your store domain. If you already have a Followprice account find your store key in your welcome email.</p>
+            <a class="fp-button fp-button-primary fp-button-large" target="_blank" method="post" href="https://followprice.co/home/register?marketplace=magento">Get Store Key</a>
+        </div>
+    </div>
+    <div class="fp-block fp-block-white">
+        <div class="fp-block-container fp-block-container-title">
+            <h3 class="fp-block-title">2. Enter your store key</h3>
+        </div>
+        <div class="fp-block-container">
+            <p class="fp-block-text">Go to your Followprice extension configuration page and <strong>enter your store key</strong>. Once that's done refresh this page.</p>
+            <a class="fp-button fp-button-primary fp-button-large" href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/Fp_Followprice_Config"); ?>">Go to Configuration</a>
+        </div>
+    </div>
+    </div>
+    <div class="fp-block">
+        <p>Need help? Check out our <a href="http://support.followprice.com" target="_blank">support site</a> or <a data-uv-trigger style="cursor:pointer" >ask us a question</a>.</p>
+    </div>
+</div>
+
+<script>
+// Include the UserVoice JavaScript SDK (only needed once on a page)
+UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/RhcuFbRVd3pcHc0qPtMrBg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+//
+// UserVoice Javascript SDK developer documentation:
+// https://www.uservoice.com/o/javascript-sdk
+//
+
+// Set colors
+UserVoice.push(['set', {
+  accent_color: '#448dd6',
+  trigger_color: 'white',
+  trigger_background_color: 'rgba(46, 49, 51, 0.6)'
+}]);
+
+// Identify the user and pass traits
+// To enable, replace sample data with actual user traits and uncomment the line
+UserVoice.push(['identify', {
+  //email:      'john.doe@example.com', // User’s email address
+  //name:       'John Doe', // User’s real name
+  //created_at: 1364406966, // Unix timestamp for the date the user signed up
+  //id:         123, // Optional: Unique id of the user (if set, this should not change)
+  //type:       'Owner', // Optional: segment your users by type
+  //account: {
+  //  id:           123, // Optional: associate multiple users with a single account
+  //  name:         'Acme, Co.', // Account name
+  //  created_at:   1364406966, // Unix timestamp for the date the account was created
+  //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+  //  ltv:          1495.00, // Decimal; lifetime value of the account
+  //  plan:         'Enhanced' // Plan name for the account
+  //}
+}]);
+
+// Add default trigger to the bottom-right corner of the window:
+// UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right' }]);
+
+// Or, use your own custom trigger:
+//UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+
+// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+UserVoice.push(['autoprompt', {}]);
+</script>
