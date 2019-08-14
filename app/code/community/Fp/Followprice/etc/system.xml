@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <Fp_Followprice translate="label" module="Fp_Followprice">
+            <label>Followprice</label>
+            <sort_order>600</sort_order>
+        </Fp_Followprice>
+    </tabs> 
+    <sections>
+        <Fp_Followprice_Config translate="label" module="Fp_Followprice">
+            <label>Settings</label>
+            <tab>Fp_Followprice</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <section_one translate="label">
+                    <label>Store Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+                        <Fp_Followprice_Key translate="label" module="Fp_Followprice">
+                            <label>Store Key:</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Key>
+                        <Fp_Followprice_Enable translate="label" module="Fp_Followprice">
+                            <label>Enabled:</label>
+                            <comment>Enable the Followprice button in all pages.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fp_Followprice/enable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Enable>								
+					</fields> 					
+                </section_one>
+                <section_two translate="label">
+                    <label>Product Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <Fp_Followprice_Position translate="label" module="Fp_Followprice">
+                            <label>Position:</label>
+                            <frontend_type>radios</frontend_type>
+                            <source_model>Fp_Followprice/position</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Position>
+                        <Fp_Followprice_Allignment translate="label" module="Fp_Followprice">
+                            <label>Allignment:</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fp_Followprice/allignment</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Allignment>
+                        <Fp_Followprice_Margin_Top translate="label" module="Fp_Followprice">
+                            <label>Top Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Top>
+                        <Fp_Followprice_Margin_Right translate="label" module="Fp_Followprice">
+                            <label>Right Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Right>
+                        <Fp_Followprice_Margin_Bottom translate="label" module="Fp_Followprice">
+                            <label>Bottom Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Bottom>
+                        <Fp_Followprice_Margin_Left translate="label" module="Fp_Followprice">
+                            <label>Left Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Left>
+                        <Fp_Followprice_Custom_Css translate="label" module="Fp_Followprice">
+                            <label>Custom Css:</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Custom_Css>
+                    </fields>
+                </section_two>
+                <section_three translate="label">
+                    <label>List Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <Fp_Followprice_Enablelist translate="label" module="Fp_Followprice">
+                            <label>Enabled:</label>
+                            <comment>Enable the Followprice button in list pages.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fp_Followprice/enable</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Enablelist>
+                        <Fp_Followprice_Style translate="label" module="Fp_Followprice">
+                            <label>Button Style:</label>
+                            <frontend_model>Fp_Followprice/adminhtml_system_config_style</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Style>
+                         <Fp_Followprice_Allignmentlist translate="label" module="Fp_Followprice">
+                            <label>Allignment:</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fp_Followprice/allignment</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Allignmentlist>
+                        <Fp_Followprice_Margin_Toplist translate="label" module="Fp_Followprice">
+                            <label>Top Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Toplist>
+                        <Fp_Followprice_Margin_Rightlist translate="label" module="Fp_Followprice">
+                            <label>Right Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Rightlist>
+                        <Fp_Followprice_Margin_Bottomlist translate="label" module="Fp_Followprice">
+                            <label>Bottom Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Bottomlist>
+                        <Fp_Followprice_Margin_Leftlist translate="label" module="Fp_Followprice">
+                            <label>Left Margin (px):</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </Fp_Followprice_Margin_Leftlist>
+                    </fields>
+                </section_three>
+            </groups>			
+        </Fp_Followprice_Config>
+    </sections> 
+</config>

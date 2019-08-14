@@ -1,0 +1,67 @@
+<?php
+	/*Get store-key*/
+	$_key = $this->getKey();
+
+	/*Get the current product*/
+	$_product = $this->getProduct();
+	
+	/*Get the current product URL*/
+	$cUrl = $this->getPUrl();
+	
+	/*Get the current product image URL*/
+	$cMedia = $this->getMedia();
+
+	/*Get category*/
+	$categoryIds = $_product->getCategoryIds();
+	$firstCategoryId = $categoryIds[0];
+	$_category = Mage::getModel('catalog/category')->load($firstCategoryId);
+
+
+	/*Get stock info*/
+	$stock = $_product->stock_item;
+
+	/*Get position*/
+	$_position = $this->getPosition(); 
+
+?>
+<?php // To determine if the button comes after "price" or "add to cart" ?>
+<?php if (($_position == 0 && $this->message == "price") || ($_position == 1 && $this->message == "cart")) { ?>
+
+<script>(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://sites.followprice.co:1337/followbutton.js"; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();</script>
+
+<div class='followprice-container'>
+	<div class="fp-button"
+	data-store-key="<?php echo $_key; ?>"
+	data-product-title="<?php echo $_product->name; ?>"
+	data-product-id="<?php echo $_product->entity_id; ?>"
+	data-product-url="<?php echo $cUrl; ?>"
+	data-product-image="<?php echo $cMedia; ?>"
+	data-product-price="<?php echo number_format($_product->final_price,2); ?>"
+	data-product-old-price="<?php echo number_format($_product->price,2); ?>"
+	data-product-currency="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?>"
+	data-product-campaign-start="<?php echo $_product->special_from_date; ?>"
+	data-product-campaign-end="<?php echo $_product->special_to_date; ?>"
+	data-product-availability ="<?php echo $stock->is_in_stock; ?>"
+	data-product-stock="<?php echo $stock->stock_qty; ?>"
+	data-product-manufacture="<?php  echo $_product->getAttributeText('manufacturer'); ?>"
+	data-product-category="<?php echo $_category->getName(); ?>">
+</div>
+</div>
+<style>
+	.followprice-container{
+		width:100%;
+		display:inline-block;
+	}
+	.fp-button{
+		display:inline-block;
+		<?php echo Mage::getStoreConfig('Fp_Followprice_Config/section_two/Fp_Followprice_Allignment'); ?>
+		margin-top:<?php echo Mage::getStoreConfig('Fp_Followprice_Config/section_two/Fp_Followprice_Margin_Top'); ?>px;
+		margin-right:<?php echo Mage::getStoreConfig('Fp_Followprice_Config/section_two/Fp_Followprice_Margin_Right'); ?>px;
+		margin-bottom:<?php echo Mage::getStoreConfig('Fp_Followprice_Config/section_two/Fp_Followprice_Margin_Bottom'); ?>px;
+		margin-left:<?php echo Mage::getStoreConfig('Fp_Followprice_Config/section_two/Fp_Followprice_Margin_Left'); ?>px;
+	}
+
+	<?php echo Mage::getStoreConfig('Fp_Followprice_Config/section_two/Fp_Followprice_Custom_Css'); ?>
+</style>
+
+<?php } ?>

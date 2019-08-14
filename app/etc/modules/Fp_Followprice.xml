@@ -1,0 +1,9 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <Fp_Followprice>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Fp_Followprice>
+    </modules>
+</config>
