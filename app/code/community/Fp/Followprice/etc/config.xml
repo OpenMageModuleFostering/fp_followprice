@@ -5,6 +5,32 @@
             <version>1.0.0.0</version>
         </Fp_Followprice>
     </modules>
+    <default>
+        <Fp_Followprice_Config>
+            <section_one>
+                <Fp_Followprice_Key></Fp_Followprice_Key>
+                <Fp_Followprice_Enable>1</Fp_Followprice_Enable>
+            </section_one>
+            <section_two>
+                <Fp_Followprice_Position>1</Fp_Followprice_Position>
+                <Fp_Followprice_Allignment></Fp_Followprice_Allignment>
+                <Fp_Followprice_Margin_Top>0</Fp_Followprice_Margin_Top>
+                <Fp_Followprice_Margin_Right>0</Fp_Followprice_Margin_Right>
+                <Fp_Followprice_Margin_Bottom>0</Fp_Followprice_Margin_Bottom>
+                <Fp_Followprice_Margin_Left>0</Fp_Followprice_Margin_Left>
+                <Fp_Followprice_Custom_Css></Fp_Followprice_Custom_Css>
+            </section_two>
+            <section_three>
+                <Fp_Followprice_Enablelist>1</Fp_Followprice_Enablelist>
+                <Fp_Followprice_Style></Fp_Followprice_Style>
+                <Fp_Followprice_Allignmentlist></Fp_Followprice_Allignmentlist>
+                <Fp_Followprice_Margin_Toplist>0</Fp_Followprice_Margin_Toplist>
+                <Fp_Followprice_Margin_Rightlist>0</Fp_Followprice_Margin_Rightlist>
+                <Fp_Followprice_Margin_Bottomlist>0</Fp_Followprice_Margin_Bottomlist>
+                <Fp_Followprice_Margin_Leftlist>0</Fp_Followprice_Margin_Leftlist>
+            </section_three>
+        </Fp_Followprice_Config>
+    </default>
     <global>
         <blocks>
             <Fp_Followprice>

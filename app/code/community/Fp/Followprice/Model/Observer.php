@@ -43,13 +43,13 @@ class Fp_Followprice_Model_Observer
 				}
 
 				$button_style = "";
-				if ($stylearray[0] == 0) {
+				if ($stylearray[0] == 1) {
 					$button_style .= "no-counter,";
 				}
-				if ($stylearray[1] == 0) {
+				if ($stylearray[1] == 1) {
 					$button_style .= "icon-link,";
 				}
-				if ($stylearray[2] == 0) {
+				if ($stylearray[2] == 1) {
 					$button_style .= "no-full-text,";
 				}
 				if ($stylearray[3] == 1) {
@@ -81,7 +81,7 @@ class Fp_Followprice_Model_Observer
 			if ($block instanceof Mage_Catalog_Block_Product_List) {
 				$transport = $observer->getTransport();
 				$html = $transport->getHtml();
-				$html .= '<script>(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://sites.followprice.co:1337/followbutton.js"; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();</script>
+				$html .= '<script>(function() { var _f = document.createElement("script");_f.type = "text/javascript"; _f.async = true; _f.src ="https://followprice.co/followbutton.js"; var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_f, s); })();</script>
 					<style>
 						.followprice-container{
 							width:100%;

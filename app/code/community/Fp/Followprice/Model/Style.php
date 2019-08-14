@@ -9,9 +9,9 @@ class Fp_Followprice_Model_Style
     public function toOptionArray()
     {
         return array(
-            array('value' => 1, 'label' => Mage::helper('adminhtml')->__('Show counter')),
-            array('value' => 2, 'label' => Mage::helper('adminhtml')->__('Show background')),
-            array('value' => 3, 'label' => Mage::helper('adminhtml')->__('Show text')),
+            array('value' => 1, 'label' => Mage::helper('adminhtml')->__('No counter')),
+            array('value' => 2, 'label' => Mage::helper('adminhtml')->__('No background')),
+            array('value' => 3, 'label' => Mage::helper('adminhtml')->__('No text')),
             array('value' => 4, 'label' => Mage::helper('adminhtml')->__('Multi-line text')),
         );
     }
