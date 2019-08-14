@@ -1,0 +1,49 @@
+<?php
+$collection = Mage::getResourceModel('catalog/product_collection');
+echo '<?xml version="1.0"?>';
+?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title><?php echo Mage::app()->getStore()->getFrontendName(); ?></title>
+    <link><?php echo Mage::getBaseUrl(); ?></link>
+    <?php foreach($collection as $product) { ?>
+    <?php
+    // Get product
+    $_product = Mage::getModel('catalog/product')->load($product->getId());
+
+    // Get availability
+    $stock = $_product->stock_item;
+    $availability = $stock->is_in_stock;
+    if ($availability == 0) {
+      $availability = "out of stock";
+    } else {
+      $availability = "in stock";
+    }
+
+    //Get Categories
+    $categoryIds = $_product->getCategoryIds();
+    $firstCategoryId = $categoryIds[0];
+    $_category = Mage::getModel('catalog/category')->load($firstCategoryId);
+    $_categoryparent = Mage::getModel('catalog/category')->load($firstCategoryId)->getParentCategory();
+    $fp_category = $_categoryparent->getName();
+    $fp_subcategory = $_category->getName();
+    ?>
+    <item>
+      <g:id><?php echo $product->getId(); ?></g:id>
+      <g:title><![CDATA[<?php echo $_product->getName(); ?>]]></g:title>
+      <g:description><![CDATA[<?php echo $_product->getDescription(); ?>]]></g:description>
+      <g:link><![CDATA[<?php echo $_product->getProductUrl(); ?>]]></g:link>
+      <g:image_link><![CDATA[<?php echo $_product->getImageUrl(); ?>]]></g:image_link>
+      <g:availability><?php echo $availability; ?></g:availability>
+      <g:price><?php echo str_replace(',', '', number_format($_product->getPrice(), 2)); ?> <?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?></g:price>
+      <?php if($_product->getSpecialPrice()){ ?>
+      <g:sale_price><?php echo str_replace(',', '', number_format($_product->getSpecialPrice(), 2)); ?> <?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?></g:sale_price>
+      <g:sale_price_effective_date><?php echo substr(str_replace(" ", "T", $_product->getSpecialFromDate()), 0, -3); ?>/<?php echo substr(str_replace(" ", "T", $_product->getSpecialToDate()), 0, -3); ?></g:sale_price_effective_date>
+      <?php } ?>
+      <?php if ($fp_subcategory) { ?>
+      <g:product_type><![CDATA[<?php echo $fp_category . ' > ' . $fp_subcategory ?>]]></g:product_type>
+      <?php } ?>
+    </item>
+    <?php } ?>
+  </channel>
+</rss>

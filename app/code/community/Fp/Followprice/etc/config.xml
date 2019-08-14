@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fp_Followprice>
-            <version>1.0.6.0</version>
+            <version>1.0.7.0</version>
         </Fp_Followprice>
     </modules>
     <default>
@@ -90,11 +90,20 @@
         </routers>
     </admin>
     <frontend>
+        <routers>
+            <followprice> 
+                <use>standard</use>
+                <args>
+                    <module>Fp_Followprice</module>
+                    <frontName>followprice</frontName>
+                </args>
+            </followprice>
+        </routers>
         <layout>
             <updates>
-                <Fp_Followprice>
+                <followprice>
                     <file>fp/followprice.xml</file>
-                </Fp_Followprice>
+                </followprice>
             </updates>
         </layout>
     </frontend>
