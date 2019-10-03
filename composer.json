@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Fp_Followprice",
+    "name": "OpenMageModuleFostering\/Fp_Followprice",
     "type": "magento-module",
     "license": "Massachusetts-Institute-of-Technology-License-",
     "homepage": "",
     "description": "Displays a button for customers to follow your products and get notified via facebook and email once the price drops or if there are changes in availability.",
     "authors": [
-    {
-        "name": "Daniel Moreira",
-        "email": "daniel.moreira@followprice.co"
-    }
-],
+        {
+            "name": "Daniel Moreira",
+            "email": "daniel.moreira@followprice.co"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
